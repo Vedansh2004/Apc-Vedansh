@@ -1,0 +1,27 @@
+BLOGENGINE/
+ └── MVN1/
+      ├── CLI/               <-- console project
+      ├── COMMON/            <-- shared models (Blog, User, etc.)
+      ├── GUI/               <-- Spring Boot Web App
+      │    └── src/main/
+      │         ├── java/com/example/... 
+      │         │    ├── config/       <-- SecurityConfig, AppConfig
+      │         │    ├── controller/   <-- BlogController, AuthController
+      │         │    ├── dao/          <-- Repositories/DAO interfaces
+      │         │    ├── model/        <-- Blog, User entities
+      │         │    └── service/      <-- BlogService, UserService
+      │         │
+      │         ├── resources/
+      │         │    ├── static/       <-- CSS, JS, images
+      │         │    ├── templates/    <-- Thymeleaf HTML pages
+      │         │    └── application.properties
+      │         │
+      │         └── BlogEngineWebApp.java  <-- @SpringBootApplication
+      │
+      └── PARENT/             <-- parent pom, aggregates CLI, COMMON, GUI
+Future Enhancements
+Add user roles (Admin, Author, Reader)
+Implement comments and likes
+Add search functionality
+Include file uploads for blog images
+Add user profiles

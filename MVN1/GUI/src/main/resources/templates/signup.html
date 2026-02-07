@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - BlogEngine</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .signup-container {
+            max-width: 450px;
+            width: 100%;
+            margin: 20px;
+        }
+        .signup-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .signup-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            font-weight: 300;
+        }
+        .brand-logo {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        .signup-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 2rem;
+            color: #666;
+        }
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        .success-message {
+            background: rgba(86, 171, 47, 0.1);
+            border: 1px solid rgba(86, 171, 47, 0.3);
+            color: #2d5016;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .error-message {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .password-requirements {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.5rem;
+            padding: 0.75rem;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+        .password-requirements ul {
+            margin: 0.5rem 0 0 1rem;
+            padding: 0;
+        }
+        .welcome-text {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 10px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        .welcome-text h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .welcome-text p {
+            color: #666;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fullscreen Background Video and Overlay -->
+    <div class="bg-video">
+        <video autoplay muted loop playsinline th:src="@{/video/bg.mp4}"></video>
+    </div>
+    <div class="bg-overlay"></div>
+    <div class="signup-container">
+        <div class="signup-card">
+            <div class="brand-logo">BlogEngine</div>
+            <h2 class="signup-title">Join Our Community</h2>
+            <p class="signup-subtitle">Create your account to start blogging</p>
+            
+            <div class="welcome-text">
+                <h3>🚀 Welcome to BlogEngine!</h3>
+                <p>Join thousands of writers sharing their stories and ideas with the world.</p>
+            </div>
+            
+            <!-- Success message for registration -->
+            <div th:if="${param.success}" class="success-message">
+                Account created successfully! You can now log in.
+            </div>
+            
+            <!-- Error message for registration issues -->
+            <div th:if="${param.error}" class="error-message">
+                Registration failed. Please try again.
+            </div>
+            
+            <form th:action="@{/signup}" method="post" th:object="${user}">
+                <div class="form-group">
+                    <label class="form-label" for="username">
+                        <span>👤 Username</span>
+                    </label>
+                    <input type="text" 
+                           id="username"
+                           th:field="*{username}" 
+                           class="form-control"
+                           placeholder="Choose a unique username"
+                           required
+                           minlength="3"
+                           maxlength="20"
+                           pattern="[a-zA-Z0-9_]+"
+                           title="Username should contain only letters, numbers, and underscores">
+                    <small style="color: #666; font-size: 0.85rem;">3-20 characters, letters, numbers, and underscores only</small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">
+                        <span>🔒 Password</span>
+                    </label>
+                    <input type="password" 
+                           id="password"
+                           th:field="*{password}" 
+                           class="form-control"
+                           placeholder="Create a strong password"
+                           required
+                           minlength="6">
+                    <div class="password-requirements">
+                        <strong>Password Requirements:</strong>
+                        <ul>
+                            <li>At least 6 characters long</li>
+                            <li>Mix of letters and numbers recommended</li>
+                            <li>Keep it secure and memorable</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        ✨ Create My Account
+                    </button>
+                </div>
+            </form>
+            
+            <div class="login-link">
+                <p>Already have an account? <a th:href="@{/login}">Sign in here</a></p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #eee;">
+                <small style="color: #999;">
+                    By signing up, you agree to start your blogging journey with us! 📝
+                </small>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

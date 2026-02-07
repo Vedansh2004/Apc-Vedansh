@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${isEdit} ? 'Edit Blog Post' : 'Create New Blog Post'">Blog Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <!-- Fullscreen Background Video and Overlay -->
+    <div class="bg-video">
+        <video autoplay muted loop playsinline th:src="@{/video/bg.mp4}"></video>
+    </div>
+    <div class="bg-overlay"></div>
+    <div class="header">
+        <nav class="nav">
+            <div class="logo">BlogEngine</div>
+            <ul class="nav-links">
+                <li><a th:href="@{/blogs}">All Blogs</a></li>
+                <li><a th:href="@{/blogs/new}">Create Blog</a></li>
+                <li><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title" th:text="${isEdit} ? 'Edit Blog Post' : 'Create New Blog Post'">Blog Form</h1>
+        
+        <!-- Flash Messages -->
+        <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+        
+        <div class="card blog-form-card">
+            <div class="form-header">
+                <div class="form-icon" th:text="${isEdit} ? '✏️' : '📝'">📝</div>
+                <h2 th:text="${isEdit} ? 'Edit Your Blog Post' : 'Create New Blog Post'">Blog Form</h2>
+                <p class="form-subtitle" th:text="${isEdit} ? 'Make your changes and update your post' : 'Share your thoughts with the world'">Form subtitle</p>
+            </div>
+            
+            <form th:action="@{/blogs}" th:object="${blog}" method="post" class="blog-form">
+                <input type="hidden" th:field="*{id}" th:if="${isEdit}"/>
+                
+                <div class="form-row">
+                    <div class="form-group form-group-large">
+                        <label class="form-label" for="title">
+                            <span class="label-icon">📰</span>
+                            <span class="label-text">Blog Title</span>
+                            <span class="label-required">*</span>
+                        </label>
+                        <input type="text" 
+                               id="title"
+                               th:field="*{title}" 
+                               class="form-control form-control-large"
+                               placeholder="Enter an engaging title that captures your reader's attention..." 
+                               required
+                               maxlength="100"/>
+                        <div class="form-hint">Make it catchy and descriptive (max 100 characters)</div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="author">
+                            <span class="label-icon">👤</span>
+                            <span class="label-text">Author</span>
+                            <span class="label-required">*</span>
+                        </label>
+                        <input type="text" 
+                               id="author"
+                               th:field="*{author}" 
+                               class="form-control"
+                               placeholder="Your name or pen name..." 
+                               required
+                               maxlength="50"/>
+                        <div class="form-hint">How should readers know you?</div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group form-group-large">
+                        <label class="form-label" for="content">
+                            <span class="label-icon">📄</span>
+                            <span class="label-text">Content</span>
+                            <span class="label-required">*</span>
+                        </label>
+                        <textarea id="content"
+                                  th:field="*{content}" 
+                                  class="form-control form-control-textarea"
+                                  placeholder="Write your blog content here... Share your thoughts, experiences, or knowledge with your readers."
+                                  rows="12"
+                                  required></textarea>
+                        <div class="form-hint">
+                            <span class="char-counter">
+                                <span id="char-count">0</span> characters
+                            </span>
+                            <span class="writing-tip">💡 Tip: Use paragraphs to make your content easy to read</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <div class="action-buttons">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <span class="btn-icon" th:text="${isEdit} ? '💾' : '🚀'">🚀</span>
+                            <span th:text="${isEdit} ? 'Update Blog Post' : 'Publish Blog Post'">Publish</span>
+                        </button>
+                        <a th:href="@{/blogs}" class="btn btn-secondary btn-large">
+                            <span class="btn-icon">❌</span>
+                            <span>Cancel</span>
+                        </a>
+                    </div>
+                    <div class="form-footer-text">
+                        <small th:text="${isEdit} ? 'Your changes will be saved immediately' : 'Your post will be published and visible to all readers'">Footer text</small>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <script>
+            // Character counter for content textarea
+            document.addEventListener('DOMContentLoaded', function() {
+                const textarea = document.getElementById('content');
+                const charCount = document.getElementById('char-count');
+                
+                function updateCharCount() {
+                    const count = textarea.value.length;
+                    charCount.textContent = count.toLocaleString();
+                    
+                    // Color coding based on length
+                    if (count < 100) {
+                        charCount.style.color = '#ff6b6b';
+                    } else if (count < 500) {
+                        charCount.style.color = '#ffa726';
+                    } else {
+                        charCount.style.color = '#66bb6a';
+                    }
+                }
+                
+                textarea.addEventListener('input', updateCharCount);
+                updateCharCount(); // Initial count
+            });
+        </script>
+    </div>
+    <!-- Floating Chat Button -->
+    <a th:href="@{/chat}" class="chat-fab" title="Chat">💬</a>
+</body>
+</html>

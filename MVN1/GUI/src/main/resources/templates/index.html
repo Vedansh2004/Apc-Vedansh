@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogEngine - Your Story Starts Here</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .brand-logo {
+            color: #ffffff;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.35);
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .feature-description {
+            color: #666;
+            line-height: 1.6;
+        }
+        .stats-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .cta-section {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+        .cta-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .cta-description {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #667eea;
+        }
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        .testimonial-author {
+            font-weight: 600;
+            color: #667eea;
+        }
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fullscreen Background Video and Overlay -->
+    <div class="bg-video">
+        <video autoplay muted loop playsinline th:src="@{/video/bg.mp4}"></video>
+    </div>
+    <div class="bg-overlay"></div>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="brand-logo" style="font-size: 4rem; margin-bottom: 1rem;">BlogEngine</div>
+            <h1 class="hero-title">Your Story Starts Here</h1>
+            <p class="hero-subtitle">
+                Create, share, and discover amazing stories with our powerful and intuitive blogging platform. 
+                Join thousands of writers who trust BlogEngine to bring their ideas to life.
+            </p>
+            <div class="hero-buttons">
+                <a th:href="@{/signup}" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                    ✨ Start Writing Today
+                </a>
+                <a th:href="@{/login}" class="btn btn-secondary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                    🔐 Sign In
+                </a>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">✍️</div>
+                <h3 class="feature-title">Easy Writing</h3>
+                <p class="feature-description">
+                    Intuitive editor with rich formatting options. Focus on your content while we handle the rest.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3 class="feature-title">Beautiful Design</h3>
+                <p class="feature-description">
+                    Modern, responsive design that looks great on all devices. Your content deserves to shine.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3 class="feature-title">Fast & Secure</h3>
+                <p class="feature-description">
+                    Lightning-fast performance with enterprise-grade security. Your data is safe with us.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">Mobile Ready</h3>
+                <p class="feature-description">
+                    Write and manage your blog from anywhere. Fully responsive design for all screen sizes.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3 class="feature-title">SEO Optimized</h3>
+                <p class="feature-description">
+                    Built-in SEO features to help your content reach more readers and rank higher in search results.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3 class="feature-title">Smart Analytics</h3>
+                <p class="feature-description">
+                    Track your blog's performance with detailed analytics and insights to grow your audience.
+                </p>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Join Our Growing Community</h2>
+            <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem;">
+                Thousands of writers trust BlogEngine to share their stories with the world
+            </p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Active Writers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Blog Posts</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100K+</div>
+                    <div class="stat-label">Monthly Readers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="card">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #333;">What Our Writers Say</h2>
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "BlogEngine has transformed the way I share my thoughts with the world. The interface is so intuitive, 
+                    and the design is absolutely beautiful!"
+                </p>
+                <div class="testimonial-author">- Sarah Johnson, Travel Blogger</div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "I love how easy it is to create and manage my blog posts. The mobile experience is fantastic, 
+                    and I can write on the go!"
+                </p>
+                <div class="testimonial-author">- Mike Chen, Tech Writer</div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "The best blogging platform I've used. Clean, fast, and reliable. My readers love the experience too!"
+                </p>
+                <div class="testimonial-author">- Emma Davis, Food Blogger</div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <h2 class="cta-title">Ready to Start Your Journey?</h2>
+            <p class="cta-description">
+                Join thousands of writers who have already discovered the joy of blogging with BlogEngine. 
+                Your story matters, and we're here to help you tell it.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a th:href="@{/signup}" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                    🚀 Get Started Free
+                </a>
+                <a th:href="@{/blogs}" class="btn btn-secondary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                    📖 Explore Blogs
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; padding: 2rem; color: #666; border-top: 1px solid rgba(255,255,255,0.2); margin-top: 3rem;">
+            <p>© 2024 BlogEngine. Made with ❤️ for writers everywhere.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                Start your blogging journey today and join our amazing community!
+            </p>
+        </div>
+    </div>
+    <!-- Floating Chat Button -->
+    <a th:href="@{/chat}" class="chat-fab" title="Chat">💬</a>
+</body>
+</html>

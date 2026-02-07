@@ -1,0 +1,124 @@
+# =========================
+# OS / Editor / IDE
+# =========================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+*.swp
+*.swo
+*.tmp
+*.bak
+.vscode/
+.history/
+
+# IntelliJ IDEA / Android Studio
+.idea/
+*.iml
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# VS Code Java
+.factorypath
+
+# =========================
+# Java / Maven / Gradle
+# =========================
+target/
+**/target/
+logs/
+*.log
+*.ctxt
+hs_err_pid*
+replay_pid*
+
+# Maven Wrapper (keep the wrapper JAR; ignore build outputs only)
+.mvn/wrapper/maven-wrapper.properties
+!/.mvn/wrapper/maven-wrapper.jar
+
+# Local environment and secrets (adjust to your needs)
+.env
+.env.*
+*.local.*
+application-local.properties
+application-*.yml.local
+
+# =========================
+# Frameworks / Tools
+# =========================
+# Spring Boot
+spring.log
+
+# Node (if any embedded frontend)
+node_modules/
+*.tsbuildinfo
+
+# =========================
+# Archives / Packages (avoid committing vendored deps)
+# =========================
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+*.gz
+*.bz2
+
+# Compiled classes / jars (do not commit built artifacts)
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.aar
+*.zip
+
+# Coverage / Reports
+coverage/
+.nyc_output/
+site/
+
+# Misc
+*.orig
+*.rej
+*.seed
+*.pid
+.DS_Store?
+
+# =========================
+# Media files (too large for GitHub)
+# =========================
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.webm
+*.mkv
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.svg
+*.ico
+
+# =========================
+# Large dependency files
+# =========================
+**/mysql-connector-j-*.jar
+
